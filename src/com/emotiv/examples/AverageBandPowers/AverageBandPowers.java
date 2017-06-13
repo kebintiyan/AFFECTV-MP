@@ -10,6 +10,7 @@
 
 package com.emotiv.examples.AverageBandPowers;
 import com.emotiv.Iedk.*;
+import com.logger.CSVWriter;
 import com.sun.jna.Pointer;
 import com.sun.jna.ptr.*;
 
@@ -31,6 +32,8 @@ public class AverageBandPowers {
 			System.out.println("Emotiv Engine start up failed.");
 			return;
 		}
+
+		CSVWriter csvWriter = new CSVWriter();
 
 		System.out.println("Start receiving Data!");
 		System.out.println("Theta, Alpha, Low_beta, High_beta, Gamma");
@@ -67,11 +70,20 @@ public class AverageBandPowers {
 	            {
 	                int result = Edk.INSTANCE.IEE_GetAverageBandPowers(userID.getValue(), i, theta, alpha, low_beta, high_beta, gamma);
 	                if(result == EdkErrorCode.EDK_OK.ToInt()){
-	                	System.out.print(theta.getValue()); System.out.print(", ");
+	                	/*System.out.print(theta.getValue()); System.out.print(", ");
 	                	System.out.print(alpha.getValue()); System.out.print(", ");
 	                	System.out.print(low_beta.getValue()); System.out.print(", ");
 	                	System.out.print(high_beta.getValue()); System.out.print(", ");
-	                	System.out.print(gamma.getValue()); System.out.print(", ");	                	
+	                	System.out.print(gamma.getValue()); System.out.print(", ");	 */
+
+	                	String output = "";
+	                	output = output + theta.getValue() + ", ";
+	                	output = output + alpha.getValue() + ", ";
+	                	output = output + low_beta.getValue() + ", ";
+	                	output = output + high_beta.getValue() + ", ";
+	                	output = output + gamma.getValue();
+
+	                	csvWriter.write(output);
 	                }
 	                
 	                System.out.println();
