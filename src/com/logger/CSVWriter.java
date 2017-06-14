@@ -17,15 +17,19 @@ public class CSVWriter {
     }
 
     private void init() {
-        write(START_STRING);
+        write(START_STRING, false);
     }
 
     public void write(String text) {
+        write(text, true);
+    }
+
+    public void write(String text, boolean append) {
         BufferedWriter bw = null;
         FileWriter fw = null;
 
         try {
-            fw = new FileWriter(FILENAME);
+            fw = new FileWriter(FILENAME, append);
             bw = new BufferedWriter(fw);
             bw.write(text);
             bw.newLine();

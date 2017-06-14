@@ -76,17 +76,25 @@ public class AverageBandPowers {
 	                	System.out.print(high_beta.getValue()); System.out.print(", ");
 	                	System.out.print(gamma.getValue()); System.out.print(", ");	 */
 
+	                	double thetaValue = theta.getValue();
+	                	double alphaValue = alpha.getValue();
+	                	double lowBetaValue = low_beta.getValue();
+	                	double highBetaValue = high_beta.getValue();
+	                	double gammaValue = gamma.getValue();
+
+
+	                	if (thetaValue + alphaValue + lowBetaValue + highBetaValue + gammaValue == 0)
+	                		continue;
+
 	                	String output = "";
-	                	output = output + theta.getValue() + ", ";
-	                	output = output + alpha.getValue() + ", ";
-	                	output = output + low_beta.getValue() + ", ";
-	                	output = output + high_beta.getValue() + ", ";
-	                	output = output + gamma.getValue();
+	                	output = output + thetaValue + ", ";
+	                	output = output + alphaValue + ", ";
+	                	output = output + lowBetaValue + ", ";
+	                	output = output + highBetaValue + ", ";
+	                	output = output + gammaValue;
 
 	                	csvWriter.write(output);
 	                }
-	                
-	                System.out.println();
 	            }	            	           
 			}
 		}
